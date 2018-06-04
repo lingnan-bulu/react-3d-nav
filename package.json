@@ -1,0 +1,20 @@
+{
+  "name": "react-3d-nav",
+  "version": "0.1.1",
+  "description": "3d navigation for react",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "3d",
+    "nav",
+    "navigation",
+    "perspective"
+  ],
+
+  "author": "bone",
+  "license": "MIT",
+  "repository": "https://github.com/1140571314/react-3d-nav"
+}
