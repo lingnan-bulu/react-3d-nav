@@ -11,39 +11,107 @@ this is a react  3d navigation
 npm i react-3d-nav --save
 
 2, import 
+
+
 import Nav3d from 'react-3d-nav'
+
+
 class xxxx extends React.Component {
+
+
   ...
+
+  
   render(){
+
+      
       return (
+
+          
           ........
+
+          
           <Nav3d 
+
+          
             data = {[
+
+                
                 {
+
+                    
                     name: '11111',
+
+                    
                     path: '/month/farm'
+
+                    
                 },
+
+                
                 {
+
+                    
                     name: 'list2',
+
+                    
                     path: '/123'
+
+                    
                 },
+
+                
                 {
+
+                    
                     name: 'list3',
+
+                    
                     path: '/234'
+
+                    
                 },
+
+                
                 {
+
+                    
                     name: 'list4',
+
+                    
                     path: '/345'
+
+                    
                 },
+
+                
                 {
+
+                    
                     name: 'list5',
+
+                    
                     path: '/456'
+
+                    
                 }
+
+                
             ]}
+
+            
           />
+
+          
       )
+
+      
   }
+
+  
 }
+
+
 ```
 
 3, api
