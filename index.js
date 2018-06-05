@@ -6,9 +6,12 @@ export default class nav3d extends Component {
 	constructor(props) {
 		super(props)
 		this.len = this.props.data.length
-		this.intervalTime = this.props.interval || 3000
-		this.top = this.props.innerStyle.top || '-400px'
+		this.intervalTime = this.props.interval.time || 3000
+		this.top = this.props.top || '-400px'
+		this.width =this.props.innerStyle.width?this.props.innerStyle.width/2 + 18 : 54
+		this.loop = this.props.interval.loop && true
 		this.currentIndex = 0
+		this.direction = this.props.orientation || 'horizontal' 
  		this.state = {
 			Ydeg: 0,
 			show: this.props.show || false,
@@ -16,6 +19,9 @@ export default class nav3d extends Component {
 		}
 	}
 	componentWillMount(){
+		if(this.state.show && this.loop){
+			this.interval(this.intervalTime)
+		}
 	}
 	componentWillUnmount(){
 		clearInterval(timer)
@@ -24,7 +30,9 @@ export default class nav3d extends Component {
 		clearInterval(timer)
 	}
 	mouseOut = ()=>{
-		timer = this.interval(this.intervalTime)
+		if(this.state.show && this.loop){
+			timer = this.interval(this.intervalTime)
+		}
 	}
 	interval = (time)=>{
 		return timer = setInterval(()=>{
@@ -41,14 +49,14 @@ export default class nav3d extends Component {
 			show: !this.state.show,
 			navScale: 1
 		}, ()=>{
-			if(this.state.show){
+			if(this.state.show && this.loop){
 				this.interval(this.intervalTime)
 			} else {
 				clearInterval(timer)
 			}
 		})
 	}
-	handleClick = (i,preIndex)=>{
+	handleClick = (i, preIndex)=>{
 		let angle = -360/this.len*(i-preIndex)
 		if(angle < -180 ) {
 			angle = 360 + angle
@@ -64,18 +72,30 @@ export default class nav3d extends Component {
 	render(){
 		let data = this.props.data || []
 		let currentIndex = Math.abs(this.currentIndex % this.len)
+		console.log(this.width,(this.width/Math.tan((2*Math.PI)/(2*this.len))))
 		return (
-			<div className = "nav_3d_scene" >
+			<div 
+				className = "nav_3d_scene"
+				style = {
+					{	
+						width: (this.direction==='horizontal')?`${2*(this.width)/Math.tan((2*Math.PI)/(2*this.len))+80}px`: '108px',
+						height: (this.direction==='horizontal')?'112px':`${2*(this.width)/Math.tan((2*Math.PI)/(2*this.len))+80}px`,
+						perspectiveOrigin: (this.direction==='horizontal')?'50% 50%':`50% ${this.width/Math.tan((2*Math.PI)/(2*this.len))}px`
+					}
+				}
+				onClick={()=>{return false}}
+				>
 				<button 
-					className = "nav_3d_btn"
+					className = {(this.direction === 'horizontal')?"nav_3d_btn_horizontal":"nav_3d_btn_vertical"}
 					type = 'button'
 					onClick = {this.changeShow}
 					>{this.state.show?'↑':'↓'}</button>
-				{<div 
+				<div 
 					className = "nav_3d_container"
 					style={{
-						transform: `rotateY(${this.state.Ydeg}deg)`,
-						top: `${!this.state.show?this.top:'0px'}`
+						transform: `rotate${(this.direction==='horizontal')?"Y":"X"}(${this.state.Ydeg}deg)`,
+						top: `${!this.state.show?this.top:'0px'}`,
+						marginTop: (this.direction==='horizontal')?'48px': `${this.width/Math.tan((2*Math.PI)/(2*this.len))+30}px`
 					}}>
                     { data.map((n, i)=>{
                         return (
@@ -83,19 +103,20 @@ export default class nav3d extends Component {
 	                    			key={i+'nav3d'}
 	                    			className = {`nav_3d_children ${i === currentIndex?"active":""}`}
 	                                style = {{
-	                                	transform: `rotateY(${!this.state.show?0:(360/data.length*i)}deg) 
-	                                	translateZ(${!this.state.show?0:(56/Math.tan((2*Math.PI)/(2*data.length)))}px)`
+	                                	transform: `rotate${(this.direction === 'horizontal')?"Y":"X"}(${!this.state.show?0:(360/this.len*i)}deg) 
+	                                	translateZ(${!this.state.show?0:(this.width/Math.tan((2*Math.PI)/(2*this.len)))}px)`,
+	                                	...this.props.innerStyle
 	                                }}
 	                                onClick = { this.handleClick.bind(this, i, Math.abs(currentIndex))}
 	                                onMouseEnter = {this.mouseIn}
 	                                onMouseLeave = {this.mouseOut}
 	                                >
-	                                {i === currentIndex?<a href={n.path}>{n.name}</a>:n.name}
+	                                {i === currentIndex?<a href={n.path}>{n.name}</a>:<p>{n.name}</p>}
 		                        </div>
 	                        )             
 	                    }
                 	)}
-				</div>}
+				</div>
 			</div>
 		)
 	}
@@ -103,6 +124,8 @@ export default class nav3d extends Component {
 nav3d.propTypes = {
 	data: propTypes.array.isRequired,
 	show: propTypes.bool,
-	interval: propTypes.number,
-	innerStyle: propTypes.object
+	interval: propTypes.object,
+	innerStyle: propTypes.object,
+	orientation: propTypes.string,
+	top: propTypes.string
 }
