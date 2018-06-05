@@ -7,6 +7,11 @@ this is a react  3d navigation
 ![Image text](https://github.com/1140571314/react-3d-nav/blob/master/example_image/horizontal2.gif)
 
 
+## 纵向效果
+
+![Image text](https://github.com/1140571314/react-3d-nav/blob/master/example_image/vertical.gif)
+
+
 1, 安装 
 npm i react-3d-nav --save
 
