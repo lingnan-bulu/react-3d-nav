@@ -6,12 +6,12 @@ this is a react  3d navigation
 
 ## 横向效果
 
-![Image text](https://github.com/1140571314/react-3d-nav/blob/master/example_image/horizontal2.gif)
+![Image text](https://github.com/1140571314/react-3d-nav/blob/image/example_image/horizontal2.gif)
 
 
 ## 纵向效果
 
-![Image text](https://github.com/1140571314/react-3d-nav/blob/master/example_image/vertical.gif)
+![Image text](https://github.com/1140571314/react-3d-nav/blob/image/example_image/vertical.gif)
 
 
 1, 安装 
