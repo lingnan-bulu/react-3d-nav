@@ -34,44 +34,11 @@ class xxxx extends React.Component {
                 
                 {
                     
-                    name: '11111',
+                    name: 'list1',
                     
                     path: '/month/farm'
                     
-                },
-                
-                {
-                    
-                    name: 'list2',
-                    
-                    path: '/123'
-                    
-                },
-                
-                {
-                    
-                    name: 'list3',
-                    
-                    path: '/234'
-                    
-                },
-                
-                {
-                    
-                    name: 'list4',
-                    
-                    path: '/345'
-                    
-                },
-                
-                {
-                    
-                    name: 'list5',
-                    
-                    path: '/456'
-                    
                 }
-                
             ]}
             
           />
