@@ -1,7 +1,7 @@
 # react-3d-nav
 this is a react  3d navigation
 
-
+接下来会增加二级菜单功能
 图片效果不太好！
 
 ## 横向效果
