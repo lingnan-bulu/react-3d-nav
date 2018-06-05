@@ -1,6 +1,6 @@
 {
   "name": "react-3d-nav",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "3d navigation for react",
   "main": "index.js",
   "scripts": {
