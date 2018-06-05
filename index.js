@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import './index.less'
 let timer = null
-export default class nav3d extends Component {
+export default class extends Component {
+	static propTypes = {
+		data: PropTypes.array.isRequired,
+		show: PropTypes.bool,
+		interval: PropTypes.object,
+		innerStyle: PropTypes.object,
+		orientation: PropTypes.string,
+		top: PropTypes.string
+	}
 	constructor(props) {
 		super(props)
 		this.len = this.props.data.length
@@ -120,12 +128,4 @@ export default class nav3d extends Component {
 			</div>
 		)
 	}
-}
-nav3d.propTypes = {
-	data: propTypes.array.isRequired,
-	show: propTypes.bool,
-	interval: propTypes.object,
-	innerStyle: propTypes.object,
-	orientation: propTypes.string,
-	top: propTypes.string
 }
