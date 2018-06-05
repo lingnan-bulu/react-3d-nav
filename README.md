@@ -2,6 +2,8 @@
 this is a react  3d navigation
 
 
+图片效果不太好！
+
 ## 横向效果
 
 ![Image text](https://github.com/1140571314/react-3d-nav/blob/master/example_image/horizontal2.gif)
