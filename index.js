@@ -80,7 +80,6 @@ export default class extends Component {
 	render(){
 		let data = this.props.data || []
 		let currentIndex = Math.abs(this.currentIndex % this.len)
-		console.log(this.width,(this.width/Math.tan((2*Math.PI)/(2*this.len))))
 		return (
 			<div 
 				className = "nav_3d_scene"
